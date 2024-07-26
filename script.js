@@ -1,6 +1,6 @@
-var index=1;
+var index=3;
 function changeBanner(){ 
-    [].forEach.call(document.images,function (v,i) { document.images[i].hidden = (i!==index && i > 0 && i < 9)});
-    index = (index) % (document.images.length-1)+1;
+    [].forEach.call(document.images,function (v,i) { document.images[i].hidden = (i!==index && i > 2 && i < 11)});
+    index = (index-2) % (8)+3;
 }
 window.onload = function () {setInterval(changeBanner, 1000)};
