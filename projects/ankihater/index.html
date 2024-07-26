@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>anki haters unite</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+ 
+<body>
+    <div class="theme">
+        <div class="top">
+            <a id="home_image" href="../../index.html">
+                <img src="../../images/darklogo.svg" height="87.75" width="200"/>
+            </a>
+            <div id="links">
+                <h5 align="right">about |</h5>
+                <a href="https://github.com/tadorituki" target="_blank" rel="noopener noreferrer">
+                    <h5 align="right">github: tadorituki</h5>
+                </a>
+            </div>
+            <div class="navbar">
+                <div id="blank"></div>
+                <img id="bottom_fire_right" src="../../images/darkrightfin.svg" height="192" width="300"/>
+                <img id="bottom_fire_left" src="../../images/darkleftfin.svg" height="192" width="450"/>
+
+            </div>
+        </div>
+        <script src="script.js"></script>
+        <div class="content">
+            <div id="blank">
+                <br />
+            </div>
+            <div class="container">
+                <img src="../../images/background.svg" />
+                <div class="within">
+                    <div id="display"></div>
+                    <div id="question-title"></div>
+                    <div id="question-text"></div>
+                    <div id="question-response"></div>
+
+                    <div id="setup">
+                        <textarea id="content-target"></textarea>
+                        <br/>
+                        <input type="file" accept=".csv" id="input-file" onchange="displayFile(this)" hidden/>
+                        <label for="input-file">csvを選択</label>
+                        <button onclick="loadFile(this)" id="load-file" hidden></button>
+                        <label for="load-file" id="load-file-label">読み込む</label>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+ 
+</html>

@@ -1,0 +1,125 @@
+body {
+    background-color: #000000;
+}
+ 
+
+.theme {
+    font-family: 'Noto Sans JP', sans-serif;
+    color: #ffffff;
+}
+
+a:link {
+    color: #ffff00;
+}
+
+a:visited {
+    color: #aae575;
+}
+
+
+h5 {
+    display: inline-block;
+}
+
+label {
+    background-color: #a9bde63b;
+    color: #a9bde6;
+
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+#load-file-label {
+    display: inline-block;
+    background-color: #7edcbb3b;
+    color: #7edcbb;
+    
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+#next-question-label{
+    display: inline-block;
+    background-color: #7edcbb3b;
+    color: #7edcbb;
+    
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+
+.top {
+    max-width: 1000px;
+    max-height: 50px;
+    margin: auto;
+    background-color: #014180;
+}
+
+.content {
+    max-width: 500px;
+    margin: auto;
+}
+
+.navbar {
+    position: absolute;
+    left:0px;
+    right:0px;
+    background-color: #014180;
+
+    max-width: 1000px;
+    height: 50px;
+    margin: auto;
+
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: stretch;
+
+}
+
+
+
+#home_image {
+    display: inline-block;
+}
+
+#links {
+    position: relative;
+    float: right;
+    padding: 0.5rem;
+}
+
+#bottom_fire_left {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+
+#bottom_fire_right {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#blank {
+    height:9vh; 
+}
+
+.within {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
