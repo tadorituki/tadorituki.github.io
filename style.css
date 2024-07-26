@@ -2,7 +2,33 @@ body {
     background-color: #ffffff;
 }
 
+h5 {
+    display: inline-block;
+}
+
 .theme {
-    font-family: 'Noto Sans JP', sans-serif;
+    font-family: 'Arial', sans-serif;
     color: #000000;
+}
+
+.top {
+    max-width: 1000px;
+    max-height: 50px;
+    margin: auto;
+    background-color: #ff800080;
+}
+
+.content {
+    max-width: 500px;
+    margin: auto;
+}
+
+#home_image {
+    display: inline-block;
+}
+
+#links {
+    position: relative;
+    float: right;
+    padding: 0.5rem;
 }
