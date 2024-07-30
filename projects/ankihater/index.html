@@ -48,17 +48,21 @@
                     <div id="setup">
                         <textarea id="content-target"></textarea>
                         <br/>
-                        <input type="file" accept=".csv" id="input-file" onchange="displayFile(this)" hidden/>
-                        <label for="input-file">csvを選択</label>
+                        <input type="file" accept=".tsv" id="input-file" onchange="displayFile(this)" hidden/>
+                        <label for="input-file">tsvを選択</label>
                         <button onclick="loadFile(this)" id="load-file" hidden></button>
                         <label for="load-file" id="load-file-label">読み込む</label>
                     </div>
                 </div>
-            </div>
-            
-
-            
+            </div>            
         </div>
+        <div class="side">
+            <br />
+            <div id="previous"><h4>直前の漢字</h4></div>
+            <div id="previous2"><h4>直前の読み</h4></div>
+            <div id="previous3"><h4 style="transform: translate(-100%, 0);">意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味、意味。</h4></div>
+        </div>
+        
     </div>
 </body>
  

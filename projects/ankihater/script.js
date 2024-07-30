@@ -1,4 +1,7 @@
 var array = [] 
+var kana = 0
+var kanji = 0
+var definition = 0
 
 function displayFile(input) {
     const file = input.files[0];
@@ -12,7 +15,7 @@ function loadFile(input) {
 
     array = deck.split('\n')
     for (let i = 0; i < array.length; i++) {
-        array[i] = array[i].split(',')
+        array[i] = array[i].split('\t')
     }
     console.log(array)
     array.shift()
@@ -63,6 +66,9 @@ function checkAnswer() {
 
 
     if(array[0][2] == document.getElementById('answer').value) {
+        document.getElementById('previous').innerHTML = `<h4>${array[0][1]}</h4>`
+        document.getElementById('previous2').innerHTML = `<h4>${array[0][2]}</h4>`
+        document.getElementById('previous3').innerHTML = `<h4 style="transform: translate(-100%, 0);">${array[0][4]}\n${array[0][3]}</h4>`
         array.push(array.shift())
         questionUpdate()
         console.log('yay')

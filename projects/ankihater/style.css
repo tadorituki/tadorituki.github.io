@@ -61,9 +61,27 @@ label {
     background-color: #014180;
 }
 
+.side {
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    margin-left: 260px;
+    white-space: pre;
+    
+}
+
+h4 {
+    -ms-writing-mode: tb-rl;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
 .content {
     width: 500px;
-    margin: auto;
+    position: relative;
+    left: 50%;
+    margin-left: -250px;
+    display:inline-block;
 }
 
 .navbar {
@@ -116,7 +134,7 @@ label {
 
 #blank {
     width: 500px;
-    height:9vh; 
+    height: 9vh; 
 }
 
 .within {
@@ -139,7 +157,7 @@ label {
 }
 
 #display {
-    top:10%;
+    top:6%;
     position: absolute;
     white-space: pre;
 
@@ -155,4 +173,25 @@ label {
     top: 65%;
     left: 50%;
     transform: translate(-50%, -35%);
+}
+
+#previous {
+    position:absolute;
+    top: 13vh;
+    transform: translateX(40px);
+    font-size: 40px;
+}
+
+#previous2 {
+    position:absolute;
+    top: 13vh;
+    transform: translateX(125px);
+}
+
+#previous3 {
+    position:absolute;
+    top: 13vh;
+    height: 440px;
+    transform: translateX(60px);
+    text-wrap: wrap;
 }
