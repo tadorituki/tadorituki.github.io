@@ -2,7 +2,7 @@ var array = []
 
 function displayFile(input) {
     const file = input.files[0];
-    document.getElementById('display').innerHTML = `<h3>using deck: ${file.name}</h3>`;
+    document.getElementById('display').innerHTML = `<h3>     using deck: ${file.name}</h3>`;
     placeFileContent(document.getElementById('content-target'),input.files[0])
     
 }
@@ -56,20 +56,25 @@ function checkAnswer() {
         if(temp[i] == temp_answer[i]) {
             response = response + '◯'
         } else {
-            response += '✕'
+            response += '×'
         }
     }
+    response += '×'.repeat(Math.max(0, temp.length-temp_answer.length))
+
 
     if(array[0][2] == document.getElementById('answer').value) {
         array.push(array.shift())
         questionUpdate()
         console.log('yay')
+        document.getElementById('question-response').innerHTML = `<h1></h1>`
+        onCorrect()
         document.getElementById('answer').value = ''
+        return
     }
     
     console.log(response)
     document.getElementById('question-response').innerHTML = `<h1>${response}</h1>`
-
+    onWrong()
 
 }
 

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>anki haters unite</title>
     <link rel="stylesheet" href="style.css">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.6/p5.js"></script>
+    <script src="sketch.js"></script>
 </head>
  
 <body>
@@ -29,13 +31,16 @@
         </div>
         <script src="script.js"></script>
         <div class="content">
+            
             <div id="blank">
-                <br />
+                <div id="display"></div>
+
             </div>
             <div class="container">
+                <div id="sketch_canvas" class="within"></div>
+                <div id="sketch_cube" class="within"></div>
                 <img src="../../images/background.svg" />
                 <div class="within">
-                    <div id="display"></div>
                     <div id="question-title"></div>
                     <div id="question-text"></div>
                     <div id="question-response"></div>
@@ -50,6 +55,8 @@
                     </div>
                 </div>
             </div>
+            
+
             
         </div>
     </div>

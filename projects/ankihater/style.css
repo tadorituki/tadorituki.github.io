@@ -62,7 +62,7 @@ label {
 }
 
 .content {
-    max-width: 500px;
+    width: 500px;
     margin: auto;
 }
 
@@ -83,7 +83,13 @@ label {
 
 }
 
+#sketch_canvas {
+    z-index: -2;
+}
 
+#sketch_cube {
+    z-index: -1;
+}
 
 #home_image {
     display: inline-block;
@@ -109,6 +115,7 @@ label {
 }
 
 #blank {
+    width: 500px;
     height:9vh; 
 }
 
@@ -122,4 +129,30 @@ label {
 .container {
     position: relative;
     text-align: center;
+}
+
+#question-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#display {
+    top:10%;
+    position: absolute;
+    white-space: pre;
+
+}
+
+#answer {
+    margin-top: 300px;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+#question-response {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -35%);
 }
