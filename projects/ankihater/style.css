@@ -157,9 +157,11 @@ h4 {
 }
 
 #display {
-    top:6%;
+    top:0%;
+    transform: translateY(550px);
     position: absolute;
     white-space: pre;
+    color:#1a1a1a
 
 }
 
@@ -194,4 +196,25 @@ h4 {
     height: 440px;
     transform: translateX(60px);
     text-wrap: wrap;
+}
+
+#canvas_2 {
+    position:absolute;
+    top: 13vh;
+    left: 50%;
+    height: 450px;
+    transform: translate(-380px, 47px);
+
+    text-wrap: wrap;
+}
+
+#previous4 {
+    position:absolute;
+    top: 13vh;
+    height: 440px;
+    left: 50%;
+    transform: translateX(-660px);
+
+    text-wrap: wrap;
+    font-size: 28px;
 }
