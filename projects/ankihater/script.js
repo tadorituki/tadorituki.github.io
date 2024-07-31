@@ -101,12 +101,18 @@ function triggerNext() {
     array.push(array.shift())
     console.log('bruh')
     document.getElementById('answer').value = ''
-
+    document.getElementById('answer').blur()
+    
     setTimeout(() => {
         document.getElementById('question-text').innerHTML = `<h1></h1>`
         document.getElementById('question-response').innerHTML = `<h1></h1>`
+        document.getElementById('answer').hidden = true;
+        
+
         setTimeout(() => {
             questionUpdate()
+            document.getElementById('answer').hidden = false;
+            document.getElementById('answer').focus()
         }, 400);
     }, 1400);
 
