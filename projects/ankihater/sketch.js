@@ -40,6 +40,8 @@ var s1 = function (sketch) {
     }
 }
 
+var boxSize = 120
+var boxVelocity = 0
 var greenValue = 0
 var redValue = 0
 var velocity = 0
@@ -48,11 +50,12 @@ var currentAge = 5
 var displayAge = currentAge
 var yellowWidth = 4
 var dropVelocity = 0
+var life = 2
 var s2 = function (sketch) {
 
 
     sketch.setup = function () {
-        let canvas2 = sketch.createCanvas(250, 250, sketch.WEBGL)
+        let canvas2 = sketch.createCanvas(440, 440, sketch.WEBGL)
         canvas2.parent('sketch_cube')
         sketch.specularMaterial(250)
         sketch.noStroke();
@@ -75,7 +78,9 @@ var s2 = function (sketch) {
         sketch.rotateX(position)
 
         // Draw the box.
-        sketch.box(120);
+        boxVelocity = Math.max(-20, boxVelocity-0.23)
+        boxSize = Math.max(120, boxSize+boxVelocity)
+        sketch.box(boxSize);
     }
     
 }
@@ -85,18 +90,39 @@ onCorrect = function() {
     greenValue = 255
     redValue = 0
     velocity = -3
+    life = 2
 
 }
 
 onWrong = function() {
+    console.log(life)
+    if(life < 2) {
+        onCollapse()
+        return
+    }
     p51.background(100, 100, 0)
     p52.background(100, 100, 0)
-    greenValue = 400;
-    redValue = 400;
-    yellowWidth = 40;
-    dropVelocity = 0.1;
+    greenValue = 400
+    redValue = 400
+    yellowWidth = 40
+    dropVelocity = 0.1
+    boxVelocity = 3
+    velocity += -0.5
+    life --
 }
 
+onCollapse = function() {
+    console.log(life)
+    triggerNext()
+    p51.background(160, 0, 0)
+    p52.background(160, 0, 0)
+    greenValue = 0
+    redValue = 800
+
+    dropVelocity = 0.3
+    boxVelocity = 10
+    life = 2
+}
 
 
 var p51 = new p5(s1, "canvas")

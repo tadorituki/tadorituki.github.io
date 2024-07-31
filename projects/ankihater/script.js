@@ -86,4 +86,31 @@ function checkAnswer() {
 
 function questionUpdate() {
     document.getElementById('question-text').innerHTML = `<h1>${array[0][1]}</h1>`
+    document.getElementById('question-response').innerHTML = `<h1></h1>`
 }
+
+
+
+function triggerNext() {
+    console.log('a')
+    document.getElementById('previous').innerHTML = `<h4>${array[0][1]}</h4>`
+    document.getElementById('previous2').innerHTML = `<h4>${array[0][2]}</h4>`
+    document.getElementById('previous3').innerHTML = `<h4 style="transform: translate(-100%, 0);">${array[0][4]}\n${array[0][3]}</h4>`
+    
+    document.getElementById('question-response').innerHTML = `<h1>${array[0][2]}</h1>`
+    array.push(array.shift())
+    console.log('bruh')
+    document.getElementById('answer').value = ''
+
+    setTimeout(() => {
+        document.getElementById('question-text').innerHTML = `<h1></h1>`
+        document.getElementById('question-response').innerHTML = `<h1></h1>`
+        setTimeout(() => {
+            questionUpdate()
+        }, 400);
+    }, 1400);
+
+    
+    return
+}
+
