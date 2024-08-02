@@ -22,7 +22,8 @@ var s1 = function (sketch) {
         var half = 220
         var full = 440
         
-        var t = sketch.frameCount/3
+        t += ringVelocity
+        ringVelocity = ringVelocity*0.96 + 0.33*0.04
         var pos = half - t % (half/3) 
 
         sketch.stroke(255-greenValue, 255, 255-greenValue-redValue, 30)
@@ -40,6 +41,8 @@ var s1 = function (sketch) {
     }
 }
 
+var t = 0
+var ringVelocity = 0.33
 var boxSize = 120
 var boxVelocity = 0
 var greenValue = 0
@@ -92,6 +95,8 @@ onCorrect = function() {
     velocity = -3
     life = 2
 
+    ringVelocity += 3
+
 }
 
 onWrong = function() {
@@ -109,6 +114,8 @@ onWrong = function() {
     boxVelocity = 3
     velocity += -0.5
     life --
+
+    ringVelocity -= 0.5
 }
 
 onCollapse = function() {
@@ -120,8 +127,11 @@ onCollapse = function() {
     redValue = 800
 
     dropVelocity = 0.3
-    boxVelocity = 10
+    boxVelocity = 4
+    velocity += 5
     life = 2
+
+    ringVelocity -= 8
 }
 
 

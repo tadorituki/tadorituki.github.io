@@ -57,18 +57,18 @@ function checkAnswer() {
     
     for(let i = 0; i < Math.min(temp.length,temp_answer.length); i++) {
         if(temp[i] == temp_answer[i]) {
-            response = response + '◯'
+            response = response + temp[i]
         } else {
             response += '×'
         }
     }
-    response += '×'.repeat(Math.max(0, temp.length-temp_answer.length))
+    response += '・'.repeat(Math.max(0, temp.length-temp_answer.length))
 
 
     if(array[0][2] == document.getElementById('answer').value) {
-        document.getElementById('previous').innerHTML = `<h4>${array[0][1]}</h4>`
-        document.getElementById('previous2').innerHTML = `<h4>${array[0][2]}</h4>`
-        document.getElementById('previous3').innerHTML = `<h4 style="transform: translate(-100%, 0);">${array[0][4]}\n${array[0][3]}</h4>`
+        document.getElementById('previous').innerHTML = `<h4 style="animation: slideIn 0.5s;">${array[0][1]}</h4>`
+        document.getElementById('previous2').innerHTML = `<h4 style="animation: slideIn 0.5s;">${array[0][2]}</h4>`
+        document.getElementById('previous3').innerHTML = `<h4 style="transform: translate(-100%, 0); animation: fadeIn 0.5s;">${array[0][4]}\n${array[0][3]}</h4>`
         array.push(array.shift())
         questionUpdate()
         console.log('yay')
@@ -85,7 +85,7 @@ function checkAnswer() {
 }
 
 function questionUpdate() {
-    document.getElementById('question-text').innerHTML = `<h1>${array[0][1]}</h1>`
+    document.getElementById('question-text').innerHTML = `<h1 style="animation: fadeIn 0.5s;">${array[0][1]}</h1>`
     document.getElementById('question-response').innerHTML = `<h1></h1>`
 }
 
@@ -93,9 +93,9 @@ function questionUpdate() {
 
 function triggerNext() {
     console.log('a')
-    document.getElementById('previous').innerHTML = `<h4>${array[0][1]}</h4>`
-    document.getElementById('previous2').innerHTML = `<h4>${array[0][2]}</h4>`
-    document.getElementById('previous3').innerHTML = `<h4 style="transform: translate(-100%, 0);">${array[0][4]}\n${array[0][3]}</h4>`
+    document.getElementById('previous').innerHTML = `<h4 style="animation: slideIn2 0.5s;">${array[0][1]}</h4>`
+    document.getElementById('previous2').innerHTML = `<h4 style="animation: slideIn2 0.5s;">${array[0][2]}</h4>`
+    document.getElementById('previous3').innerHTML = `<h4 style="transform: translate(-100%, 0); animation: fadeIn 0.5s;">${array[0][4]}\n${array[0][3]}</h4>`
     
     document.getElementById('question-response').innerHTML = `<h1>${array[0][2]}</h1>`
     array.push(array.shift())
