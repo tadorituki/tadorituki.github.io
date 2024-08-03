@@ -583,8 +583,9 @@ function startQuiz() {
 function checkAnswer() {
     document.getElementById('answer').value = l(document.getElementById('answer').value)
     var response = ''
-    var temp = array[0][2].split(',')[0].split('')
+    var temp = array[0][2].replaceAll(' ', '').split(',')[0].split('')
     var temp_answer =  document.getElementById('answer').value.split('')
+    
     
     for(let i = 0; i < Math.min(temp.length,temp_answer.length); i++) {
         if(temp[i] == temp_answer[i]) {
@@ -595,8 +596,7 @@ function checkAnswer() {
     }
     response += '・'.repeat(Math.max(0, temp.length-temp_answer.length))
 
-    
-    if(array[0][2].includes(document.getElementById('answer').value.split(','))) {
+    if(array[0][2].replaceAll(' ', '').split(',').indexOf(document.getElementById('answer').value) > -1) {
         document.getElementById('previous').innerHTML = `<h4 style="animation: slideIn 0.5s;">${array[0][1]}</h4>`
         document.getElementById('previous2').innerHTML = `<h4 style="animation: slideIn 0.5s;">${array[0][2].replaceAll(",", '、')}</h4>`
         document.getElementById('previous3').innerHTML = `<h4 style="transform: translate(-100%, 0); animation: fadeIn 0.5s;">${array[0][4]}\n${array[0][3]}</h4>`
@@ -628,7 +628,6 @@ function loadNext() {
     console.log(reviewVariable[currentAge])
     array.splice(Math.min(array.length, reviewVariable[currentAge]), 0, array.shift());
     currentAge = array[0][0]
-    console.log(array)
 
     var tmp4 = []
     for(let i = 0; i < array.length; i++) {
