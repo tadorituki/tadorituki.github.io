@@ -512,14 +512,19 @@ function displayFile(input) {
 }
 
 function loadFile(input) {
-    var deck = document.getElementById('content-target').value;
+    var deck = document.getElementById('content-target').value
+    var kanjiid = document.getElementById('kanjiindex').value
+    var kanaid = document.getElementById('kanaindex').value
+    var enid = document.getElementById('endefindex').value
+    var jaid = document.getElementById('jadefindex').value
 
     array = deck.split('\n')
     for (let i = 0; i < array.length; i++) {
         array[i] = array[i].split('\t')
     }
+    array = modifyArray(array, 0, kanjiid, kanaid, enid, jaid)
     console.log(array)
-    array.shift()
+
     startQuiz()
 }
 
@@ -536,6 +541,27 @@ function readFileContent(file) {
         reader.onerror = error => reject(error)
         reader.readAsText(file)
     })
+}
+
+var customAge = false
+
+function modifyArray(arr, ageIndex, kanjiIndex, kanaIndex, jaDefIndex, enDefIndex) {
+    var tmp5 = []
+    for(let i = 0; i < arr.length; i++) {
+        var row = []
+        if(customAge) {
+            row.push(arr[i][ageIndex])
+        } else {
+            row.push(0)
+        }
+        row.push(arr[i][kanjiIndex])
+        row.push(arr[i][kanaIndex])
+        row.push(arr[i][jaDefIndex])
+        row.push(arr[i][enDefIndex])
+
+        tmp5.push(row)
+    }
+    return tmp5
 }
 
 function startQuiz() {
@@ -574,16 +600,18 @@ function checkAnswer() {
         document.getElementById('previous').innerHTML = `<h4 style="animation: slideIn 0.5s;">${array[0][1]}</h4>`
         document.getElementById('previous2').innerHTML = `<h4 style="animation: slideIn 0.5s;">${array[0][2]}</h4>`
         document.getElementById('previous3').innerHTML = `<h4 style="transform: translate(-100%, 0); animation: fadeIn 0.5s;">${array[0][4]}\n${array[0][3]}</h4>`
-        array.push(array.shift())
-        questionUpdate()
+        
+        
         console.log('yay')
+
+
         document.getElementById('question-response').innerHTML = `<h1></h1>`
         onCorrect()
+        questionUpdate()
         document.getElementById('answer').value = ''
         return
     }
     
-    console.log(response)
     document.getElementById('question-response').innerHTML = `<h1>${response}</h1>`
     onWrong()
 
@@ -595,16 +623,31 @@ function questionUpdate() {
 }
 
 
+function loadNext() {
+    array[0][0] = currentAge
+    console.log(reviewVariable[currentAge])
+    array.splice(Math.min(array.length, reviewVariable[currentAge]), 0, array.shift());
+    currentAge = array[0][0]
+    console.log(array)
+
+    var tmp4 = []
+    for(let i = 0; i < array.length; i++) {
+        tmp4.push(array[i][1])
+    }
+    console.log(tmp4)
+}
 
 function triggerNext() {
-    console.log('a')
     document.getElementById('previous').innerHTML = `<h4 style="animation: slideIn2 0.5s;">${array[0][1]}</h4>`
     document.getElementById('previous2').innerHTML = `<h4 style="animation: slideIn2 0.5s;">${array[0][2]}</h4>`
     document.getElementById('previous3').innerHTML = `<h4 style="transform: translate(-100%, 0); animation: fadeIn 0.5s;">${array[0][4]}\n${array[0][3]}</h4>`
     
     document.getElementById('question-response').innerHTML = `<h1>${array[0][2]}</h1>`
-    array.push(array.shift())
+    loadNext()
     console.log('bruh')
+
+    
+
     document.getElementById('answer').value = ''
     document.getElementById('answer').blur()
     

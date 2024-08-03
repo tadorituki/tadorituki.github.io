@@ -51,6 +51,7 @@ var velocity = 0
 var position = 0
 var currentAge = 5
 var displayAge = currentAge
+var ageMomentum = 0
 var yellowWidth = 4
 var life = 2
 var s2 = function (sketch) {
@@ -93,18 +94,20 @@ onCorrect = function() {
     redValue = 0
     velocity = -3
 
-    if(life = 2){
+    if(life == 2){
+        ageMomentum = 0.3
         currentAge = nextAgeGreen[currentAge]
     } else {
+        ageMomentum = 0.1*(nextAgeYellow[currentAge] - currentAge)
         currentAge = nextAgeYellow[currentAge]
     }
     life = 2
 
     ringVelocity += 3
+    loadNext()
 }
 
 onWrong = function() {
-    console.log(life)
     if(life < 2) {
         onCollapse()
         return
@@ -123,13 +126,14 @@ onWrong = function() {
 }
 
 onCollapse = function() {
-    console.log(life)
+    
     triggerNext()
     p51.background(160, 0, 0)
     p52.background(160, 0, 0)
     greenValue = 0
     redValue = 800
 
+    ageMomentum = -0.3
     currentAge = nextAgeRed[currentAge]
     boxVelocity = 4
     velocity += 5
@@ -153,7 +157,8 @@ var s3 = function (sketch) {
     }
 
     sketch.draw = function () {
-        displayAge = displayAge*0.93 + currentAge*0.07
+        displayAge = displayAge*0.93 + currentAge*0.07 + ageMomentum
+        ageMomentum *= 0.95
         drawCircle(currentAge, displayAge)
     }
     
@@ -163,6 +168,7 @@ var p53 = new p5(s3, "canvas3")
 var nextAgeGreen = [2,2,3,5,6,6,7,7]
 var nextAgeYellow = [1,1,2,3,3,3,4,4]
 var nextAgeRed = [0,0,1,1,2,2,3,3]
+var reviewVariable = [6,8,22,31,40,58,58,201]
 
 drawCircle = function(age, dage) {
     p53.background(0)

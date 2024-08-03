@@ -47,11 +47,20 @@
 
                     <div id="setup">
                         <textarea id="content-target"></textarea>
-                        <br/>
-                        <input type="file" accept=".tsv" id="input-file" onchange="displayFile(this)" hidden/>
+                        
+                        <input type="file" accept=".tsv,.csv,.txt" id="input-file" onchange="displayFile(this)" hidden/>
+                        <div class="indexsetup">
+                            <input class="index" id="kanjiindex" type="text" placeholder="kanji"/>
+                            <input class="index" id="kanaindex" type="text" placeholder="kana"/>
+                            <input class="index" id="endefindex" type="text" placeholder="en-def"/>
+                            <input class="index" id="jadefindex" type="text" placeholder="ja-def"/>
+                        </div>
+                        <br />
                         <label for="input-file">tsvを選択</label>
                         <button onclick="loadFile(this)" id="load-file" hidden></button>
                         <label for="load-file" id="load-file-label">読み込む</label>
+
+                        
                     </div>
                 </div>
             </div>            

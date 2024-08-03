@@ -76,6 +76,19 @@ h4 {
     text-orientation: mixed;
 }
 
+.indexsetup {
+
+
+    justify-content: center;
+    bottom:0;
+    margin: auto;
+}
+
+.index {
+    margin-top: 13px;
+    width: 28px;
+}
+
 .content {
     width: 500px;
     position: relative;
