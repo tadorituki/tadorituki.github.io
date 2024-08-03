@@ -550,14 +550,14 @@ function modifyArray(arr, ageIndex, kanjiIndex, kanaIndex, jaDefIndex, enDefInde
     for(let i = 0; i < arr.length; i++) {
         var row = []
         if(customAge) {
-            row.push(arr[i][ageIndex])
+            row.push(arr[arr.length-1-i][ageIndex])
         } else {
             row.push(0)
         }
-        row.push(arr[i][kanjiIndex])
-        row.push(arr[i][kanaIndex])
-        row.push(arr[i][jaDefIndex])
-        row.push(arr[i][enDefIndex])
+        row.push(arr[arr.length-1-i][kanjiIndex])
+        row.push(arr[arr.length-1-i][kanaIndex])
+        row.push(arr[arr.length-1-i][jaDefIndex])
+        row.push(arr[arr.length-1-i][enDefIndex])
 
         tmp5.push(row)
     }
