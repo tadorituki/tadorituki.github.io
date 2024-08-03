@@ -52,7 +52,6 @@ var position = 0
 var currentAge = 5
 var displayAge = currentAge
 var yellowWidth = 4
-var dropVelocity = 0
 var life = 2
 var s2 = function (sketch) {
 
@@ -93,10 +92,15 @@ onCorrect = function() {
     greenValue = 255
     redValue = 0
     velocity = -3
+
+    if(life = 2){
+        currentAge = nextAgeGreen[currentAge]
+    } else {
+        currentAge = nextAgeYellow[currentAge]
+    }
     life = 2
 
     ringVelocity += 3
-
 }
 
 onWrong = function() {
@@ -110,7 +114,7 @@ onWrong = function() {
     greenValue = 400
     redValue = 400
     yellowWidth = 40
-    dropVelocity = 0.1
+    currentAge = Math.min(nextAgeYellow[currentAge],currentAge)
     boxVelocity = 3
     velocity += -0.5
     life --
@@ -126,7 +130,7 @@ onCollapse = function() {
     greenValue = 0
     redValue = 800
 
-    dropVelocity = 0.3
+    currentAge = nextAgeRed[currentAge]
     boxVelocity = 4
     velocity += 5
     life = 2
@@ -149,7 +153,7 @@ var s3 = function (sketch) {
     }
 
     sketch.draw = function () {
-        displayAge = Math.max(displayAge-dropVelocity, nextAgeYellow[currentAge])
+        displayAge = displayAge*0.93 + currentAge*0.07
         drawCircle(currentAge, displayAge)
     }
     
