@@ -581,7 +581,7 @@ function startQuiz() {
 }
 
 function checkAnswer() {
-    document.getElementById('answer').value = l(document.getElementById('answer').value)
+    document.getElementById('answer').value = l(document.getElementById('answer').value).replace('n','ん')
     var response = ''
     var temp = array[0][2].replaceAll(' ', '').split(',')[0].split('')
     var temp_answer =  document.getElementById('answer').value.split('')
