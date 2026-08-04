@@ -6,7 +6,7 @@ document.addEventListener('keydown', function(event) {
     }
 })
 
-function Start() {
+function Start(times) {
     if (document.getElementById('dealer').value ==  "" || document.getElementById('player1').value == "" || document.getElementById('player2').value == ""){
         alert('at least one field is empty, the program will bug :(')
     }
@@ -47,15 +47,13 @@ function Start() {
     }
 
     var total = 0
-    for (let i = 0; i < 10000000; i++) {
-        total += Simulate(dealer, player1, player2, softgoal, hardgoal)
+    for (let i = 0; i < times; i++) {
+        total += Simulate(dealer, player1, player2, softgoal, hardgoal, times)
     }
-    document.getElementById('result').innerHTML = `<h1 style="animation: slideIn2 0.5s;">${(total/10000000).toFixed(4)}</h1>`
-
-
+    document.getElementById('result').innerHTML = `<h1 style="animation: slideIn2 0.5s;">${(total/times).toFixed(4)}</h1>`
 }
 
-function Simulate(dealer, player1, player2, softgoal, hardgoal) {
+function Simulate(dealer, player1, player2, softgoal, hardgoal, times) {
     var deck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,11,11,11]
     if (deck.indexOf(Number(dealer)) > -1) {deck.splice(deck.indexOf(Number(dealer)), 1)}
     if (deck.indexOf(Number(player1)) > -1) {deck.splice(deck.indexOf(Number(player1)), 1)}
@@ -65,7 +63,7 @@ function Simulate(dealer, player1, player2, softgoal, hardgoal) {
     var playercards = [player1, player2]
     var playersum = player1 + player2
     if (playersum == 22) {playersum = 12}
-    if (playersum == 21) {return 80}
+    if (playersum == 21) {if (times == 100) {console.log("natural 21")}; return 80}
 
     if (player1 == 11 || player2 == 11) {var playersoft = true} else {var playersoft = false}
     var dealersum = dealer
@@ -95,14 +93,18 @@ function Simulate(dealer, player1, player2, softgoal, hardgoal) {
             playersum -= 10
         }
         if (playersum > 21) {
-            //console.log("player bust:")
-            //console.log(playercards)
+            if (times == 100) {
+                console.log("player bust:")
+                console.log(playercards)
+            }
             return 0
 
         }
         if (playersum == 21) {
-            //console.log("player 21:")
-            //console.log(playercards)
+            if (times == 100) {
+                console.log("player 21:")
+                console.log(playercards)
+            }
             return 80
         }
 
@@ -130,29 +132,37 @@ function Simulate(dealer, player1, player2, softgoal, hardgoal) {
             dealersum -= 10
         }
         if (dealersum > 21) {
-            //console.log("dealer bust:")
-            //console.log(playercards)
-            //console.log(dealercards)
+            if (times == 100) {
+                console.log("dealer bust:")
+                console.log(playercards)
+                console.log(dealercards)
+            }
             return 30
         }
     }
 
     if (playersum == dealersum) {
-        //console.log("push:")
-        //console.log(playercards)
-        //console.log(dealercards)
+        if (times == 100) {
+            console.log("push:")
+            console.log(playercards)
+            console.log(dealercards)
+        }
         return 15
     }
     if (playersum < dealersum) {
-        //console.log("player lose:")
-        //console.log(playercards)
-        //console.log(dealercards)
+        if (times == 100) {
+            console.log("player lose:")
+            console.log(playercards)
+            console.log(dealercards)
+        }
         return 0
     }
     else {
-        //console.log("player win:")
-        //console.log(playercards)
-        //console.log(dealercards)
+        if (times == 100) {
+            console.log("player win:")
+            console.log(playercards)
+            console.log(dealercards)
+        }
         return 30
     }
 
