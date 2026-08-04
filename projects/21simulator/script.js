@@ -65,6 +65,8 @@ function Simulate(dealer, player1, player2, softgoal, hardgoal) {
     var playercards = [player1, player2]
     var playersum = player1 + player2
     if (playersum == 22) {playersum = 12}
+    if (playersum == 21) {return 80}
+
     if (player1 == 11 || player2 == 11) {var playersoft = true} else {var playersoft = false}
     var dealersum = dealer
     if (dealer == 11) {var dealersoft = true} else {var dealersoft = false}
