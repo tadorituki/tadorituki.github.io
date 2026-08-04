@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en-US">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>tadoru's dumpster fire</title>
+    <link rel="icon" href="../../images/faviconnew.svg">
+    <link rel="stylesheet" href="style.css">
+</head>
+ 
+<body>
+    <div class="theme">
+        <div class="top">
+            <a id="home_image" href="../../index.html">
+                <img src="../../images/new.svg" height="87.75" width="200"/>
+            </a>
+            <div id="links">
+                <h5 align="right">about |</h5>
+                <a href="https://github.com/tadorituki" target="_blank" rel="noopener noreferrer">
+                    <h5 align="right">github: tadorituki</h5>
+                </a>
+            </div>
+            <div class="navbar">
+                <div id="blank"></div>
+                <img id="bottom_fire_right" src="../../images/withbg3.svg" height="192" width="300"/>
+                <img id="bottom_fire_left" src="../../images/withbg4.svg" height="192" width="450"/>
+
+            </div>
+        </div>
+
+        <div class="content">
+            <script src="script.js"></script>
+            <br />
+            <br />
+            <div>
+                <h3 style="margin: auto;">21 simulator</h3>
+                <h5 style="margin: auto;">hello niche community. this is a simulator for 21, not regular blackjack.</h5> <br />
+                <h5 style="margin: auto;">enter 0 for undrawn cards.</h5> <br />
+                <h5 style="margin: auto;">likely contains bugs, i will try to fix them</h5> <br />
+
+
+                <input class="index" id="dealer" type="text" placeholder="dealer up card"/> <br />
+                <input class="index" id="player1" type="text" placeholder="player card 1"/>
+                <input class="index" id="player2" type="text" placeholder="player card 2"/> <br />
+                <h5 style="margin: auto;">strategy for hard totals</h5> <br />
+                <div>
+                    <input type="radio" id="standhard" name="hard" value="0" />
+                    <label for="contactChoice1">always stand on hard</label>  <br />
+
+                    <input type="radio" id="hithard" name="hard" value="1" checked/>
+                    <label for="contactChoice2">hit until hard total is reached, then stand: </label>
+                    <input class="index" id="hardtarget" type="text" placeholder="hard total"/>
+                </div>
+                <h5 style="margin: auto;">strategy for soft totals</h5> <br />
+
+                <div>
+                    <input type="radio" id="standsoft" name="soft" value="0" />
+                    <label for="contactChoice1">always stand on soft</label>  <br />
+
+                    <input type="radio" id="hitsoft" name="soft" value="1" checked/>
+                    <label for="contactChoice2">hit until soft total is reached, then stand: </label>
+                    <input class="index" id="softtarget" type="text" placeholder="soft total"/>
+                </div>
+                <button onclick="Start()" id="start">start 10,000,000 simulations</button>
+                <h1 id="result"></h1>
+            </div>
+        </div>
+    </div>
+</body>
+ 
+</html>
