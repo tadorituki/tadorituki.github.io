@@ -7,7 +7,7 @@ function changeBanner(){
         index = 1
     }
 }
-window.onload = function () {setInterval(changeBanner, 1000)};
+window.onload = function () {setInterval(changeBanner, 400)};
 
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
