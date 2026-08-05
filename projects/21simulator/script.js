@@ -92,7 +92,6 @@ function Simulate(dealer, player1, player2, softgoal, hardgoal, times, extracard
         playersoft --
         playersum -= 10
     }
-    console.log(deck)
 
     if (playersum > 21) {if (times == 100) {addText("player bust:")}; addText(playercards); return 0}
     if (playersum == 21) {if (times == 100) {addText("player 21:")}; addText(playercards); return 80}
