@@ -1,4 +1,14 @@
 
+var index=1;
+function changeBanner(){ 
+    [].forEach.call(document.images,function (v,i) { document.images[i].hidden = (i!==index && i > 0 && i < 15)});
+    index++;
+    if(index > 14){
+        index = 1
+    }
+}
+window.onload = function () {setInterval(changeBanner, 1000)};
+
 document.addEventListener('keydown', function(event) {
     if (event.key === 'Enter') {
         event.preventDefault()
