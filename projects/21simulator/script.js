@@ -8,7 +8,7 @@ document.addEventListener('keydown', function(event) {
 
 function Start(times) {
     document.getElementById('debug').innerHTML = ``
-    if (document.getElementById('dealer').value ==  "" || document.getElementById('player1').value == "" || document.getElementById('player2').value == ""){
+    if (document.getElementById('dealer').value ==  "" || (document.getElementById('player1').value == "" && document.getElementById('player2').value == "" && document.getElementById('players').value == "")){
         alert('at least one field is empty, the program will bug :(')
     }
     var dealer = document.getElementById('dealer').value
@@ -39,6 +39,16 @@ function Start(times) {
     }
     player2 = Number(player2)
 
+    var extracards = document.getElementById('players').value.split(",")
+    for (j = 0; j < extracards.length; j++) {
+        if (extracards[j] == "A" || extracards[j] == "a" || extracards[j] == 1) {
+            extracards[j] = 11
+        }
+        if (extracards[j] == "J" || extracards[j] == "Q" || extracards[j] == "K" || extracards[j] == "j" || extracards[j] == "q" || extracards[j] == "k") {
+            extracards[j] = 10
+        }
+        extracards[j] = Number(extracards[j])
+    }
 
     if (document.querySelector('input[name="hard"]:checked').value == 0) {var hardgoal = 0} else {
             var hardgoal = Number(document.getElementById('hardtarget').value)
@@ -49,7 +59,7 @@ function Start(times) {
 
     var total = 0
     for (let i = 0; i < times; i++) {
-        total += Simulate(dealer, player1, player2, softgoal, hardgoal, times)
+        total += Simulate(dealer, player1, player2, softgoal, hardgoal, times, extracards)
     }
     document.getElementById('result').innerHTML = `<h1 style="animation: slideIn2 0.5s;">${(total/times).toFixed(4)}</h1>`
 }
@@ -59,24 +69,39 @@ function addText(text) {
 
 }
 
-function Simulate(dealer, player1, player2, softgoal, hardgoal, times) {
+function Simulate(dealer, player1, player2, softgoal, hardgoal, times, extracards) {
     var deck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,11,11,11]
     if (deck.indexOf(Number(dealer)) > -1) {deck.splice(deck.indexOf(Number(dealer)), 1)}
-    if (deck.indexOf(Number(player1)) > -1) {deck.splice(deck.indexOf(Number(player1)), 1)}
-    if (deck.indexOf(Number(player2)) > -1) {deck.splice(deck.indexOf(Number(player2)), 1)}
 
     var dealercards = [dealer]
     var playercards = [player1, player2]
-    var playersum = player1 + player2
-    if (playersum == 22) {playersum = 12}
-    if (playersum == 21) {if (times == 100) {addText("natural 21")}; return 80}
+    playercards = playercards.concat(extracards).filter(num => num !== 0)
+    var playersum = 0
+    var playersoft = 0
+    //if (playersum == 22) {playersum = 12}
+    //if (playersum == 21) {if (times == 100) {addText("natural 21")}; return 80}
 
-    if (player1 == 11 || player2 == 11) {var playersoft = true} else {var playersoft = false}
+    for (k = 0; k < playercards.length; k++) {
+        if (playercards[k] == 0) {continue;}
+        playersum += playercards[k]
+        if (playercards[k] == 11) {playersoft ++}
+        if (deck.indexOf(Number(playercards[k])) > -1) {deck.splice(deck.indexOf(Number(playercards[k])), 1)}
+    }
+
+    while (playersum > 21 && playersoft > 0) {
+        playersoft --
+        playersum -= 10
+    }
+    console.log(deck)
+
+    if (playersum > 21) {if (times == 100) {addText("player bust:")}; addText(playercards); return 0}
+    if (playersum == 21) {if (times == 100) {addText("player 21:")}; addText(playercards); return 80}
+
     var dealersum = dealer
     if (dealer == 11) {var dealersoft = true} else {var dealersoft = false}
     var tempindex = 0
     var tempcard = 0
-    while ((playersoft == true && playersum < softgoal)||(playersoft == false && playersum < hardgoal)) {
+    while ((playersoft > 0 && playersum < softgoal)||(playersoft == 0 && playersum < hardgoal)) {
         tempindex = Math.floor(Math.random() * deck.length)
         tempcard = deck[tempindex]
         deck.splice(tempindex, 1); 
@@ -85,7 +110,7 @@ function Simulate(dealer, player1, player2, softgoal, hardgoal, times) {
 
         if (tempcard == 11) {
             if (playersum <= 10) {
-                playersoft = true
+                playersoft ++
                 playersum += 11
             } else {
                 playersum += 1
@@ -94,8 +119,8 @@ function Simulate(dealer, player1, player2, softgoal, hardgoal, times) {
             playersum += tempcard
         }
 
-        if (playersoft == true && playersum > 21) {
-            playersoft = false
+        if (playersoft > 0 && playersum > 21) {
+            playersoft--
             playersum -= 10
         }
         if (playersum > 21) {
