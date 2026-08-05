@@ -6,8 +6,18 @@ document.addEventListener('keydown', function(event) {
     }
 })
 
+function addText(text) {
+    document.getElementById('debug').innerHTML += `<br /><h5 class="debugtext">${text}</h5>`
+
+}
+
 function Start(times) {
+    
     document.getElementById('debug').innerHTML = ``
+    if (times == 100) {
+        addText("scroll down for debug text, JKQ are all treated as 10 in logs.")
+        addText("")
+    }
     if (document.getElementById('dealer').value ==  "" || (document.getElementById('player1').value == "" && document.getElementById('player2').value == "" && document.getElementById('players').value == "")){
         alert('at least one field is empty, the program will bug :(')
     }
@@ -58,16 +68,40 @@ function Start(times) {
     }
 
     var total = 0
+    var tally = [0,0,0,0,0,0]
+    var temp = [0,0]
     for (let i = 0; i < times; i++) {
-        total += Simulate(dealer, player1, player2, softgoal, hardgoal, times, extracards)
+        temp = Simulate(dealer, player1, player2, softgoal, hardgoal, times, extracards)
+        total += temp [0]
+        tally[temp[1]]++
+    }
+    if (times == 100) {
+        addText("scroll down for debug text, JKQ are all treated as 10 in logs.")
     }
     document.getElementById('result').innerHTML = `<h1 style="animation: slideIn2 0.5s;">${(total/times).toFixed(4)}</h1>`
+    document.getElementById('twentyone').style.width = `${tally[0]/times*100}%`
+    document.getElementById('twentyone').innerHTML = `<h6 class="hovertext">${(tally[0]/times*100).toFixed(2)}% twenty-one</h6>`
+
+    document.getElementById('dealerbust').style.width = `${tally[1]/times*100}%`
+    document.getElementById('dealerbust').innerHTML = `<h6 class="hovertext">${(tally[1]/times*100).toFixed(2)}% dealer bust</h6>`
+
+    document.getElementById('playerwin').style.width = `${tally[2]/times*100}%`
+    document.getElementById('playerwin').innerHTML = `<h6 class="hovertext">${(tally[2]/times*100).toFixed(2)}% player win</h6>`
+
+    document.getElementById('push').style.width = `${tally[3]/times*100}%`
+    document.getElementById('push').innerHTML = `<h6 class="hovertext">${(tally[3]/times*100).toFixed(2)}% push</h6>`
+
+    document.getElementById('playerlose').style.width = `${tally[4]/times*100}%`
+    document.getElementById('playerlose').innerHTML = `<h6 class="hovertext">${(tally[4]/times*100).toFixed(2)}% player lose</h6>`
+
+    document.getElementById('playerbust').style.width = `${tally[5]/times*100}%`
+    document.getElementById('playerbust').innerHTML = `<h6 class="hovertext">${(tally[5]/times*100).toFixed(2)}% player bust</h6>`
+
+
+
 }
 
-function addText(text) {
-    document.getElementById('debug').innerHTML += `<br /><h5>${text}</h5>`
 
-}
 
 function Simulate(dealer, player1, player2, softgoal, hardgoal, times, extracards) {
     var deck = [2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,6,6,6,6,7,7,7,7,8,8,8,8,9,9,9,9,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,10,11,11,11,11]
@@ -93,8 +127,8 @@ function Simulate(dealer, player1, player2, softgoal, hardgoal, times, extracard
         playersum -= 10
     }
 
-    if (playersum > 21) {if (times == 100) {addText("player bust:")}; addText(playercards); return 0}
-    if (playersum == 21) {if (times == 100) {addText("player 21:")}; addText(playercards); return 80}
+    if (playersum > 21) {if (times == 100) {addText("player bust")}; addText("player cards: ".concat(playercards)); addText(""); return [0,5]}
+    if (playersum == 21) {if (times == 100) {addText("player 21")}; addText("player cards: ".concat(playercards)); addText(""); return [80,0]}
 
     var dealersum = dealer
     if (dealer == 11) {var dealersoft = true} else {var dealersoft = false}
@@ -124,18 +158,21 @@ function Simulate(dealer, player1, player2, softgoal, hardgoal, times, extracard
         }
         if (playersum > 21) {
             if (times == 100) {
-                addText("player bust:")
-                addText(playercards)
+                addText("player bust")
+                addText("player cards: ".concat(playercards))
+                addText("")
             }
-            return 0
+            return [0,5]
 
         }
         if (playersum == 21) {
             if (times == 100) {
-                addText("player 21:")
-                addText(playercards)
+                addText("player 21")
+                addText("player cards: ".concat(playercards))
+                addText("")
+
             }
-            return 80
+            return [80,0]
         }
 
     }
@@ -163,37 +200,41 @@ function Simulate(dealer, player1, player2, softgoal, hardgoal, times, extracard
         }
         if (dealersum > 21) {
             if (times == 100) {
-                addText("dealer bust:")
-                addText(playercards)
-                addText(dealercards)
+                addText("dealer bust")
+                addText("player cards: ".concat(playercards))
+                addText("dealer cards: ".concat(dealercards))
+                addText("")
             }
-            return 30
+            return [30,1]
         }
     }
 
     if (playersum == dealersum) {
         if (times == 100) {
-            addText("push:")
-            addText(playercards)
-            addText(dealercards)
+            addText("push")
+            addText("player cards: ".concat(playercards))
+            addText("dealer cards: ".concat(dealercards))
+            addText("")
         }
-        return 15
+        return [15,3]
     }
     if (playersum < dealersum) {
         if (times == 100) {
-            addText("player lose:")
-            addText(playercards)
-            addText(dealercards)
+            addText("player lose")
+            addText("player cards: ".concat(playercards))
+            addText("dealer cards: ".concat(dealercards))
+            addText("")
         }
-        return 0
+        return [0,4]
     }
     else {
         if (times == 100) {
-            addText("player win:")
-            addText(playercards)
-            addText(dealercards)
+            addText("player win")
+            addText("player cards: ".concat(playercards))
+            addText("dealer cards: ".concat(dealercards))
+            addText("")
         }
-        return 30
+        return [30,2]
     }
 
 }

@@ -23,6 +23,65 @@ input[type="radio"] {
     width: 75px;
 }
 
+#twentyone
+{
+    background: rgb(255, 60, 0) !important ;
+    width: 5% ;
+}
+#dealerbust
+{
+    background: rgb(255, 132, 0) !important ;
+    width: 20% ;
+}
+#playerwin
+{
+    background: rgb(246, 174, 4) !important ;
+    width: 15% ;
+}
+#push
+{
+    background: rgb(54, 48, 46) !important ;
+    width: 20% ;
+}
+#playerlose
+{
+    background: rgb(187, 0, 255) !important ;
+    width: 20% ;
+}
+#playerbust
+{
+    background: rgb(0, 0, 0) !important ;
+    width: 20% ;
+}
+
+#chart {
+    display: flex;
+}
+
+.segment
+{
+    height: 20px !important;
+}
+
+h6 {
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.debugtext {
+    margin: 0 auto 0;
+}
+
+h1 {
+    margin: 30px auto 0;
+}
+
+.segment:hover .hovertext {
+  opacity: 1;
+  visibility: visible;
+}
 
 #players {
     width: 300px;
